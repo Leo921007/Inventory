@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            background-color: #f0f0f0; /* Color pastel de fondo */
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="/">Inventario</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/products/add">Agregar Producto</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Botón para activar modo oscuro con ícono -->
+            <div class="d-flex">
+                <button class="btn btn-outline-dark ms-auto" id="dark-mode-toggle">
+                    <i id="dark-mode-icon" class="fas fa-moon"></i> <!-- Ícono inicial: sol -->
+                </button>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container mt-4">
+        {{{ body }}}
+    </div>
+
+    <nav class="navbar fixed-bottom navbar-light bg-light">
+        <div class="container">
+            <span class="navbar-text">
+                <a href="javascript:history.go(-1)" class="btn btn-outline-secondary me-2">
+                    Volver atrás
+                </a>
+            </span>
+        </div>
+    </nav>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+</html>

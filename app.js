@@ -1,49 +1,50 @@
-const express = require('express');
-const exphbs  = require('express-handlebars');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-const app = express();
-const productRoutes = require('./routes/products');
+// app.js
 
-// Configuración de Handlebars
-app.engine('handlebars', exphbs({
+const express = require('express');
+const exphbs = require('express-handlebars');
+const methodOverride = require('method-override');
+const mongoose = require('mongoose');
+mongoose.set('strictQuery', true)
+const morgan = require('morgan');
+const path = require('path');
+
+const productRoutes = require('./routes/productRoutes');
+
+const app = express();
+
+const PORT = process.env.PORT || 3000;
+app.set('port', PORT);
+app.set('views', path.join(__dirname, 'views'));
+app.engine('.handlebars', exphbs({
     defaultLayout: 'main',
+    layoutsDir: path.join(app.get('views'), 'layouts'),
     extname: '.handlebars'
 }));
-app.set('view engine', 'handlebars');
+app.set('view engine', '.handlebars');
 
-// Middleware para manejar datos JSON
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(morgan('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(methodOverride('_method'));
 
-// Middleware para servir archivos estáticos
-app.use(express.static('public'));
+// Servir archivos estáticos
+app.use(express.static(path.join(__dirname, 'public')));
 
-// Conexión a MongoDB
-mongoose.connect('mongodb://localhost:27017/inventory', {
+//Rutas
+app.use(require('./routes/productRoutes'))
+
+//Ruta de inicio
+app.get('/', (req, res) => {
+    res.render('index');
+});
+
+mongoose.connect('mongodb://127.0.0.1/inventory', {
+    useUnifiedTopology: true,
     useNewUrlParser: true,
-    useUnifiedTopology: true
 })
 .then(() => console.log('Connected to MongoDB'))
 .catch(err => console.error('Could not connect to MongoDB', err));
 
-// Rutas de productos
-app.use('/products', productRoutes);
-
-// Ruta principal para renderizar la vista home
-app.get('/', async (req, res) => {
-    try {
-        // Obtener la lista de productos desde la base de datos
-        const products = await Product.find();
-        res.render('home', { products });
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ message: 'Internal Server Error' });
-    }
-});
-
-// Puerto de escucha del servidor
-const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });

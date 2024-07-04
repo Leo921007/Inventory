@@ -1,26 +1,44 @@
-{{#extend "layouts/main"}}
-    {{#contentFor "scripts"}}
-        <script src="/js/home.js"></script>
-    {{/contentFor}}
+{{!< main}}
 
-    <h1>Listado de Productos</h1>
-
-    <ul class="list-group mb-4">
-        {{#each products}}
-            <li class="list-group-item">
-                <strong>{{this.name}}</strong> - {{this.description}}
-                <span class="badge bg-primary">{{this.quantity}}</span>
-                <button class="btn btn-outline-primary btn-sm ms-2" onclick="openAddStockModal('{{this._id}}')">Añadir Stock</button>
-                <button class="btn btn-outline-danger btn-sm ms-2" onclick="openRemoveStockModal('{{this._id}}')">Quitar Stock</button>
-            </li>
-        {{/each}}
-    </ul>
-
-    <button class="btn btn-success" onclick="openCreateProductModal()">Crear Nuevo Producto</button>
-
-    <!-- Modales -->
-    {{> addStockModal}}
-    {{> removeStockModal}}
-    {{> createProductModal}}
-
-{{/extend}}
+<div class="card">
+    <div class="card-header">
+        <h5 class="card-title">Listado de Productos</h5>
+    </div>
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each products}}
+                <tr>
+                    <td>{{ name }}</td>
+                    <td>{{ description }}</td>
+                    <td>${{ price }}</td>
+                    <td>{{ quantity }}</td>
+                    <td>
+                        <a href="/products/{{ _id }}" class="btn btn-info btn-sm" title="Ver Producto">
+                            <i class="bi bi-eye"></i>
+                        </a>
+                        <a href="/products/{{ _id }}/edit" class="btn btn-warning btn-sm" title="Editar Producto">
+                            <i class="bi bi-pencil"></i>
+                        </a>
+                        <form action="/products/{{_id}}?_method=DELETE" method="POST" style="display: inline;">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button type="submit" class="btn btn-danger btn-sm" title="Eliminar Producto">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>

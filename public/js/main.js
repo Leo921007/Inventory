@@ -72,3 +72,20 @@ $(document).ready(function() {
         });
     });
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const darkModeToggle = document.getElementById('dark-mode-toggle');
+    const darkModeIcon = document.getElementById('dark-mode-icon');
+
+    darkModeToggle.addEventListener('click', function() {
+        document.body.classList.toggle('dark-mode');
+        // Cambiar el ícono entre sol y luna
+        if (document.body.classList.contains('dark-mode')) {
+            darkModeIcon.classList.remove('fa-moon');
+            darkModeIcon.classList.add('fa-sun');
+        } else {
+            darkModeIcon.classList.remove('fa-sun');
+            darkModeIcon.classList.add('fa-moon');
+        }
+    });
+});

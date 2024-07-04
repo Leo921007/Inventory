@@ -1,23 +1,28 @@
-<div class="modal fade" id="createProductModal" tabindex="-1" aria-labelledby="createProductModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="createProductModalLabel">Crear Nuevo Producto</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+{{!< main}}
+
+<div class="card">
+    <div class="card-header">
+        <h5 class="card-title">Agregar Nuevo Producto</h5>
+    </div>
+    <div class="card-body">
+        <form action="/products/add" method="POST">
+            <div class="mb-3">
+                <label for="name" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="name" name="name" required>
             </div>
-            <div class="modal-body">
-                <form id="createProductForm">
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="name" name="name" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="description" class="form-label">Descripción</label>
-                        <input type="text" class="form-control" id="description" name="description">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Crear</button>
-                </form>
+            <div class="mb-3">
+                <label for="description" class="form-label">Descripción</label>
+                <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
             </div>
-        </div>
+            <div class="mb-3">
+                <label for="price" class="form-label">Precio</label>
+                <input type="number" class="form-control" id="price" name="price" step="0.01" required>
+            </div>
+            <div class="mb-3">
+                <label for="quantity" class="form-label">Cantidad</label>
+                <input type="number" class="form-control" id="quantity" name="quantity" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Agregar Producto</button>
+        </form>
     </div>
 </div>

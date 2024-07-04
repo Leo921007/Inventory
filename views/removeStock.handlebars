@@ -1,20 +1,16 @@
-<div class="modal fade" id="removeStockModal" tabindex="-1" aria-labelledby="removeStockModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="removeStockModalLabel">Quitar Stock</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+{{!< main}}
+
+<div class="card">
+    <div class="card-header">
+        <h5 class="card-title">Remover Stock - {{ product.name }}</h5>
+    </div>
+    <div class="card-body">
+        <form action="/products/{{ product._id }}/remove-stock" method="POST">
+            <div class="mb-3">
+                <label for="quantity" class="form-label">Cantidad a Remover</label>
+                <input type="number" class="form-control" id="quantity" name="quantity" required>
             </div>
-            <div class="modal-body">
-                <form id="removeStockForm">
-                    <input type="hidden" id="productId" value="">
-                    <div class="mb-3">
-                        <label for="quantity" class="form-label">Cantidad</label>
-                        <input type="number" class="form-control" id="quantity" name="quantity" required>
-                    </div>
-                    <button type="submit" class="btn btn-danger">Quitar</button>
-                </form>
-            </div>
-        </div>
+            <button type="submit" class="btn btn-primary">Remover Stock</button>
+        </form>
     </div>
 </div>

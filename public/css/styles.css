@@ -1,2 +1,12 @@
 /* styles.css */
 /* Agrega estilos personalizados aquí */
+body {
+    background-color: #f0f0f0; /* Color pastel de fondo por defecto */
+    transition: background-color 0.3s ease;
+}
+
+body.dark-mode {
+    background-color: #333; /* Color de fondo oscuro */
+}
+
+/* Agrega estilos adicionales para elementos en modo oscuro si es necesario */

@@ -1,20 +1,16 @@
-<div class="modal fade" id="addStockModal" tabindex="-1" aria-labelledby="addStockModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="addStockModalLabel">Añadir Stock</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+{{!< main}}
+
+<div class="card">
+    <div class="card-header">
+        <h5 class="card-title">Añadir Stock - {{ product.name }}</h5>
+    </div>
+    <div class="card-body">
+        <form action="/products/{{ product._id }}/add-stock" method="POST">
+            <div class="mb-3">
+                <label for="quantity" class="form-label">Cantidad a Añadir</label>
+                <input type="number" class="form-control" id="quantity" name="quantity" required>
             </div>
-            <div class="modal-body">
-                <form id="addStockForm">
-                    <input type="hidden" id="productId" value="">
-                    <div class="mb-3">
-                        <label for="quantity" class="form-label">Cantidad</label>
-                        <input type="number" class="form-control" id="quantity" name="quantity" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Añadir</button>
-                </form>
-            </div>
-        </div>
+            <button type="submit" class="btn btn-primary">Añadir Stock</button>
+        </form>
     </div>
 </div>
