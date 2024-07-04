@@ -1,0 +1,26 @@
+{{#extend "layouts/main"}}
+    {{#contentFor "scripts"}}
+        <script src="/js/home.js"></script>
+    {{/contentFor}}
+
+    <h1>Listado de Productos</h1>
+
+    <ul class="list-group mb-4">
+        {{#each products}}
+            <li class="list-group-item">
+                <strong>{{this.name}}</strong> - {{this.description}}
+                <span class="badge bg-primary">{{this.quantity}}</span>
+                <button class="btn btn-outline-primary btn-sm ms-2" onclick="openAddStockModal('{{this._id}}')">Añadir Stock</button>
+                <button class="btn btn-outline-danger btn-sm ms-2" onclick="openRemoveStockModal('{{this._id}}')">Quitar Stock</button>
+            </li>
+        {{/each}}
+    </ul>
+
+    <button class="btn btn-success" onclick="openCreateProductModal()">Crear Nuevo Producto</button>
+
+    <!-- Modales -->
+    {{> addStockModal}}
+    {{> removeStockModal}}
+    {{> createProductModal}}
+
+{{/extend}}
